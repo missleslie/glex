@@ -8,3 +8,7 @@ GameWorld::GameWorld (ApplicationMode mode) {
 void GameWorld::Draw() {
   asset_manager->Draw();
 }
+cameraPosition = forwardVector * movementSpeed;
+	lookatPosition = forwardVector * movementSpeed;
+
+	//Again you can do the operation like that if you don't have operator overloading

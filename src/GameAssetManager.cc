@@ -1,4 +1,5 @@
 #include "GameAssetManager.h"
+#include "GameWorld.h"
 
 /**
  * Creates a GameAssetManager to load the correct shaders based on the
@@ -37,7 +38,71 @@ GameAssetManager::~GameAssetManager() {
  */
 GameAssetManager::GameAssetManager(GameAssetManager const& the_manager) {
   // TODO: implement this
+
+
+void GameAssetManager.cpp::OnEvent(keyboardEvent& event){
+	keyboardEvent the_event = event.GetCode();
+	switch (the event {
+
+	case CAMERA_UP:
+	camera->GoUp();
+		break;
+
+	case CAMERA_DOWN:
+		camera->GoDown();
+		break;
+
+	case CAMERA_LEFT:
+		camera->GoLeft();
+		break;
+
+	case CAMERA_RIGHT:
+		camera->GoRight();
+		break;
+	})
 }
+
+
+	vec3 lookatPosition;
+	vec3 cameraPosition;
+	vec3 upVector(0,1,0);
+	float movementSpeed;
+
+
+	vec3 forwardVector = lookatPosition - cameraPosition;
+
+	//You can generate like that if you don't have operator overload
+	forwardVector.x = lookatPosition.x - cameraPosition.x;
+	forwardVector.y = lookatPosition.y - cameraPosition.y;
+	forwardVector.z = lookatPosition.z - cameraPosition.z;
+
+
+
+	//moving forward :
+
+	cameraPosition.x = forwardVector.x * movementSpeed;
+	cameraPosition.y = forwardVector.y * movementSpeed;
+	cameraPosition.z = forwardVector.z * movementSpeed;
+
+	//moving backward :
+	cameraPosition = forwardVector * movementSpeed;
+	lookatPosition = forwardVector * movementSpeed;
+
+	//moving left :
+	vec3 leftVector = Crossproduct(upVector,forwardVector);
+	cameraPosition = leftVector * movementSpeed;
+	lookatPosition = leftVector * movementSpeed;
+
+
+	//moving right :
+	vec3 rightVector = Crossproduct(forwardVector,upVector);
+	cameraPosition = rightVector * movementSpeed;
+	lookatPosition = rightVector * movementSpeed;
+
+
+
+
+
 
 /**
  * Unimplemented move constructor -- this unimplemented method violates the
@@ -45,10 +110,12 @@ GameAssetManager::GameAssetManager(GameAssetManager const& the_manager) {
  */
 GameAssetManager::GameAssetManager(GameAssetManager const&& the_manager) {
   // TODO: implement this
-}
+
+
+
 
 /**
- * Unimplemented assisgnment operator -- violates the expected semantics for
+ * Unimplemented assignment operator -- violates the expected semantics for
  * assignment in C++11.
  */
 void GameAssetManager::operator=(GameAssetManager const& the_manager) {

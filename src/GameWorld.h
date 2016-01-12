@@ -30,4 +30,18 @@ class GameWorld {
  private:
   std::shared_ptr<GameAssetManager> asset_manager;
 };
+
+enum keyboardEvent {CAMERA_UP, CAMERA_DOWN, CAMERA_LEFT, CAMERA_RIGHT};
+class keyboardEvent{
+public:
+	keyboardEvent(const SDL_Event &);
+	keyboardEvent GetCode();
+private:
+	keyboardEvent code;
+};cameraPosition = forwardVector * movementSpeed;
+lookatPosition = forwardVector * movementSpeed;
+
+//Again you can do the operation like that if you don't have operator overloading
+};
+
 #endif // GAMEWORLD_H

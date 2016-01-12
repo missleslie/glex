@@ -6,7 +6,10 @@
 #include <GL/gl.h>
 
 class GameAsset {
+
  public:
+
+
   virtual void Draw(GLuint) = 0;
 
 };
